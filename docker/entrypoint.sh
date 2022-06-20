@@ -1,7 +1,7 @@
 #!/bin/sh
 
 # Default to "data".
-DATADIR="${DATADIR:-/root/.terra/data}"
+DATADIR="${DATADIR:-/terra/.terra/data}"
 MONIKER="${MONIKER:-docker-node}"
 ENABLE_LCD="${ENABLE_LCD:-true}"
 MINIMUM_GAS_PRICES=${MINIMUM_GAS_PRICES-0.01133uluna,0.15uusd,0.104938usdr,169.77ukrw,428.571umnt,0.125ueur,0.98ucny,16.37ujpy,0.11ugbp,10.88uinr,0.19ucad,0.14uchf,0.19uaud,0.2usgd,4.62uthb,1.25usek,1.25unok,0.9udkk,2180.0uidr,7.6uphp,1.17uhkd}
@@ -41,6 +41,14 @@ if [ "$CHAINID" = "columbus-5" ] && [[ ! -z "$SNAPSHOT_NAME" ]] ; then
       # # cleanup
       rm $FILENAME
   fi
+fi
+
+if [[ ! -z "$VALIDATOR_KEYNAME" ]] && [[ ! -z "$VALIDATOR_MNENOMIC" ]] && [[ ! -z "$VALIDATOR_PASSPHRASE" ]] ; then 
+terrad keys add $KEYNAME --recover > /dev/null 2>&1 << EOF
+$VALIDATOR_MNENOMIC
+$VALIDATOR_PASSPHRASE
+$VALIDATOR_PASSPHRASE
+EOF
 fi
 
 exec "$@" --db_dir $DATADIR
