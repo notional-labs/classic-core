@@ -44,7 +44,7 @@ if [ "$CHAINID" = "columbus-5" ] && [[ ! -z "$SNAPSHOT_NAME" ]] ; then
 fi
 
 if [[ ! -z "$VALIDATOR_KEYNAME" ]] && [[ ! -z "$VALIDATOR_MNENOMIC" ]] && [[ ! -z "$VALIDATOR_PASSPHRASE" ]] ; then 
-terrad keys add $KEYNAME --recover > /dev/null 2>&1 << EOF
+terrad keys add $VALIDATOR_KEYNAME --recover > /dev/null 2>&1 << EOF
 $VALIDATOR_MNENOMIC
 $VALIDATOR_PASSPHRASE
 $VALIDATOR_PASSPHRASE
