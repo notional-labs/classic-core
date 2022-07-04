@@ -1,6 +1,7 @@
-ARG version=v0.5.11-oracle
+ARG base_image=terrarebels/core
+ARG version=latest
 
-FROM terramoney/core:${version}
+FROM ${base_image}:${version}
 
 ARG chainid=columbus-5
 ARG validator_keyname=local
@@ -29,13 +30,15 @@ RUN terrad init --chain-id $chainid moniker
 RUN mv ~/.terra/config/config.toml ~/config.toml
 RUN mv ~/.terra/config/app.toml ~/app.toml
 
-RUN if [ "$chainid" = "columbus-5" ] ; then wget -O ~/.terra/config/genesis.json https://columbus-genesis.s3.ap-northeast-1.amazonaws.com/columbus-5-genesis.json; fi
-RUN if [ "$chainid" = "columbus-5" ] ; then wget -O ~/.terra/config/addrbook.json https://networks.mcontrol.ml/columbus/addrbook.json; fi
-
-RUN if [ "$chainid" = "bombay-12" ] ; then wget -O ~/.terra/config/genesis.json https://raw.githubusercontent.com/terra-money/classic-testnet/master/bombay-12/genesis.json; fi
-RUN if [ "$chainid" = "bombay-12" ] ; then wget -O ~/.terra/config/addrbook.json https://raw.githubusercontent.com/terra-money/classic-testnet/master/bombay-12/addrbook.json; fi
-
+RUN if [ "$chainid" = "columbus-5" ] ; then wget -O ~/.terra/config/genesis.json https://columbus-genesis.s3.ap-northeast-1.amazonaws.com/columbus-5-genesis.json; fi; \
+    if [ "$chainid" = "columbus-5" ] ; then wget -O ~/.terra/config/addrbook.json https://networks.mcontrol.ml/columbus/addrbook.json; fi; \
+    if [ "$chainid" = "bombay-12" ]  ; then wget -O ~/.terra/config/genesis.json https://raw.githubusercontent.com/terra-money/classic-testnet/master/bombay-12/genesis.json; fi; \
+    if [ "$chainid" = "bombay-12" ]  ; then wget -O ~/.terra/config/addrbook.json https://raw.githubusercontent.com/terra-money/classic-testnet/master/bombay-12/addrbook.json; fi; \
+    if [ "$chainid" = "rebel-1" ]    ; then wget -O ~/.terra/config/genesis.json https://raw.githubusercontent.com/terra-rebels/classic-testnet/master/rebel-1/genesis.json; fi; \
+    if [ "$chainid" = "rebel-1" ]    ; then wget -O ~/.terra/config/addrbook.json https://raw.githubusercontent.com/terra-rebels/classic-testnet/master/rebel-1/addrbook.json; fi;
+    
 COPY ./entrypoint.sh /entrypoint.sh
+
 ENTRYPOINT [ "/entrypoint.sh" ]
 
-["/usr/local/bin/terrad", "start"]
+CMD ["terrad", "start"]

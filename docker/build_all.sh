@@ -10,5 +10,6 @@ git checkout -
 
 popd
 
-docker build --build-arg version=$VERSION --build-arg chainid=columbus-5 -t terramoney/core-node:$VERSION .
-docker build --build-arg version=$VERSION --build-arg chainid=bombay-12 -t terramoney/core-node:$VERSION-testnet .
+docker build --build-arg version=$VERSION --build-arg chainid=columbus-5 -t terramoney/core-node:$VERSION-columbus-5 .
+docker build --build-arg version=$VERSION --build-arg chainid=bombay-12  -t terramoney/core-node:$VERSION-bombay-12  .
+docker build --build-arg version=$VERSION --build-arg chainid=rebel-1    -t terramoney/core-node:$VERSION-rebel-1    .
