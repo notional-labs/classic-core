@@ -20,12 +20,6 @@ jobs:
       docker_core_image: terrarebels/core
       docker_core_node_image: terrarebels/core-node
     steps:
-      - name: upgrade git
-        run: |
-          apk add --update
-          apk add git
-          git --version
-
       - uses: actions/checkout@master
         with:
           fetch-depth: 0
