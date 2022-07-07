@@ -20,7 +20,7 @@ jobs:
       docker_core_image: terrarebels/core
       docker_core_node_image: terrarebels/core-node
     steps:
-      - uses: actions/checkout@master
+      - uses: actions/checkout@v2
         with:
           fetch-depth: 0
 
