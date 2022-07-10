@@ -110,6 +110,6 @@ jobs:
           context: docker
           file: docker/Dockerfile
           build-args: |
-            base_image=${{ env.docker_core_image }}-rebel-1
-            version=${{ steps.prep.outputs.version }}
+            base_image=${{ env.docker_core_image }}
+            version=${{ steps.prep.outputs.version }}-rebel-1
             chainid=rebel-1
