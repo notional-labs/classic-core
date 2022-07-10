@@ -41,6 +41,4 @@ RUN if [ "$chainid" = "columbus-5" ] ; then wget -O ~/.terra/config/genesis.json
     
 COPY ./entrypoint.sh /entrypoint.sh
 
-ENTRYPOINT [ "/entrypoint.sh" ]
-
-CMD ["terrad", "start"]
+CMD ["/entrypoint.sh"]

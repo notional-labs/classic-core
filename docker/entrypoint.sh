@@ -43,12 +43,30 @@ if [ "$CHAINID" = "columbus-5" ] && [[ ! -z "$SNAPSHOT_NAME" ]] ; then
   fi
 fi
 
+terrad start --x-crisis-skip-assert-invariants &
+
+#Wait for Terrad to catch up
+while true
+do
+  if ! (( $(echo $(terrad status) | awk -F '"catching_up":|},"ValidatorInfo"' '{print $2}') ));
+  then
+    break
+  fi
+  sleep 1
+done
+
 if [[ ! -z "$VALIDATOR_KEYNAME" ]] && [[ ! -z "$VALIDATOR_MNENOMIC" ]] && [[ ! -z "$VALIDATOR_PASSPHRASE" ]] ; then 
-terrad keys add $VALIDATOR_KEYNAME --recover > /dev/null 2>&1 << EOF
+terrad keys add $VALIDATOR_KEYNAME --recover > ~/.terra/keys.log 2>&1 << EOF
 $VALIDATOR_MNENOMIC
 $VALIDATOR_PASSPHRASE
 $VALIDATOR_PASSPHRASE
 EOF
 fi
 
-exec "$@" --db_dir $DATADIR
+if [ ! -z "$VALIDATOR_AMOUNT" ] && [ ! -z "$MONIKER" ] && [ ! -z "$VALIDATOR_PASSPHRASE" ] && [ ! -z "$VALIDATOR_KEYNAME" ] && [ ! -z "$VALIDATOR_KEYNAME" ] && [ ! -z "$VALIDATOR_COMMISSION_RATE" ] && [ ! -z "$VALIDATOR_COMMISSION_RATE_MAX" ]  && [ ! -z "$VALIDATOR_COMMISSION_RATE_MAX_CHANGE" ]  && [ ! -z "$VALIDATOR_MIN_SELF_DELEGATION" ] ; then
+terrad tx staking create-validator --amount=$VALIDATOR_AMOUNT --pubkey=$(terrad tendermint show-validator) --moniker="$MONIKER" --chain-id=$CHAINID --from=$VALIDATOR_KEYNAME --commission-rate="$VALIDATOR_COMMISSION_RATE" --commission-max-rate="$VALIDATOR_COMMISSION_RATE_MAX" --commission-max-change-rate="$VALIDATOR_COMMISSION_RATE_MAX_CHANGE" --min-self-delegation="$VALIDATOR_MIN_SELF_DELEGATION" --gas=auto --gas-adjustment=1.4 --fees=120000uluna > ~/.terra/validator.log 2>&1 << EOF
+$VALIDATOR_PASSPHRASE
+y
+EOF
+fi
+wait
