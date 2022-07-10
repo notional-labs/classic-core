@@ -20,15 +20,7 @@ jobs:
       docker_core_image: terrarebels/core
       docker_core_node_image: terrarebels/core-node
     steps:
-      - name: Force Install GIT latest
-        run: |
-          apt-get install -y software-properties-common \
-          && apt-get update \
-          && add-apt-repository -y ppa:git-core/ppa \
-          && apt-get update \
-          && apt-get install -y git
-          
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@master
         with:
           fetch-depth: 0
 
@@ -45,17 +37,20 @@ jobs:
             fi
           fi
           CORE_TAGS="${docker_core_image}:${VERSION}"
+          CORE_REBEL_1_TAGS="${docker_core_image}:${VERSION}-rebel-1"
           CORE_NODE_COLUMBUS_5_TAGS="${docker_core_node_image}:${VERSION}-columbus-5"
           CORE_NODE_BOMBAY_12_TAGS="${docker_core_node_image}:${VERSION}-bombay-12"
           CORE_NODE_REBEL_1_TAGS="${docker_core_node_image}:${VERSION}-rebel-1"
           if [[ $VERSION =~ ^v[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}$ ]]; then
             CORE_TAGS="$CORE_TAGS,${docker_core_image}:${VERSION}"
+            CORE_REBEL_1_TAGS="$CORE_REBEL_1_TAGS,${docker_core_image}:${VERSION}-rebel-1"            
             CORE_NODE_COLUMBUS_5_TAGS="$CORE_NODE_COLUMBUS_5_TAGS,${docker_core_node_image}:${VERSION}-columbus-5"
             CORE_NODE_BOMBAY_12_TAGS="$CORE_NODE_BOMBAY_12_TAGS,${docker_core_node_image}:${VERSION}-bombay-12"
             CORE_NODE_REBEL_1_TAGS="$CORE_NODE_REBEL_1_TAGS,${docker_core_node_image}:${VERSION}-rebel-1"
           fi
           echo ::set-output name=version::${VERSION}
           echo ::set-output name=core_tags::${CORE_TAGS}
+          echo ::set-output name=core_rebel_1_tags::${CORE_REBEL_1_TAGS}
           echo ::set-output name=core_node_columbus_5_tags::${CORE_NODE_COLUMBUS_5_TAGS}
           echo ::set-output name=core_node_bombay_12_tags::${CORE_NODE_BOMBAY_12_TAGS}
           echo ::set-output name=core_node_rebel_1_tags::${CORE_NODE_REBEL_1_TAGS}
@@ -75,6 +70,13 @@ jobs:
         with:
           push: ${{ github.event_name != 'pull_request' && !contains(github.ref, 'release') }}
           tags: ${{ steps.prep.outputs.core_tags }}
+      
+      - name: Publish Core rebel-1 Image to Docker Hub
+        uses: docker/build-push-action@v2
+        with:
+          push: ${{ github.event_name != 'pull_request' && !contains(github.ref, 'release') }}
+          tags: ${{ steps.prep.outputs.core_rebel_1_tags }}
+          file: Dockerfile.rebel-1
       
       - name: Publish Core Node columbus-5 Image to Docker Hub
         uses: docker/build-push-action@v2
