@@ -55,7 +55,9 @@ do
   sleep 1
 done
 
-if [[ ! -z "$VALIDATOR_KEYNAME" ]] && [[ ! -z "$VALIDATOR_MNENOMIC" ]] && [[ ! -z "$VALIDATOR_PASSPHRASE" ]] ; then 
+
+if [ ! -z "$VALIDATOR_KEYNAME" ] && [ ! -z "$VALIDATOR_MNENOMIC" ] && [ ! -z "$VALIDATOR_PASSPHRASE" ] ; then
+
 terrad keys add $VALIDATOR_KEYNAME --recover > ~/.terra/keys.log 2>&1 << EOF
 $VALIDATOR_MNENOMIC
 $VALIDATOR_PASSPHRASE

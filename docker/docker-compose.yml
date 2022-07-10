@@ -1,0 +1,29 @@
+version: '3'
+
+services:
+   node:
+     container_name: node
+     image: terrarebels/core-node:docker_and_action_fixes-rebel-1
+     environment:
+       - CHAINID=rebel-1
+       - MINIMUM_GAS_PRICES=0.05uluna,0.104938usdr,0.15uusd,170.0ukrw
+       - MONIKER=rebel-docker-node
+       - VALIDATOR_KEYNAME=local
+       - VALIDATOR_PASSPHRASE=12345678
+       - VALIDATOR_MNENOMIC=torch swamp cancel lift never october child harsh rib aspect luxury word peanut length bamboo hawk material vehicle glue above west random sketch author
+       - VALIDATOR_AMOUNT=10000000uluna
+       - VALIDATOR_COMMISSION_RATE=0.1
+       - VALIDATOR_COMMISSION_RATE_MAX=0.2
+       - VALIDATOR_COMMISSION_RATE_MAX_CHANGE=0.01
+       - VALIDATOR_MIN_SELF_DELEGATION=1
+     restart: always
+     volumes:
+       - terra:/terra
+     ulimits:
+        nproc: 65535
+        nofile:
+          soft: 65535
+          hard: 65535
+volumes:
+  terra:
+
