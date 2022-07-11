@@ -3,9 +3,10 @@ version: '3'
 services:
    node:
      container_name: node
-     image: terrarebels/core-node:docker_and_action_fixes-rebel-1
+     image: terrarebels/core-node:docker_and_action_fixes_v2-rebel-1
      environment:
        - CHAINID=rebel-1
+       - TERRAD_STARTUP_PARAMETERS=--x-crisis-skip-assert-invariants
        - MINIMUM_GAS_PRICES=0.05uluna,0.104938usdr,0.15uusd,170.0ukrw
        - MONIKER=rebel-docker-node
        - VALIDATOR_KEYNAME=local
@@ -16,6 +17,9 @@ services:
        - VALIDATOR_COMMISSION_RATE_MAX=0.2
        - VALIDATOR_COMMISSION_RATE_MAX_CHANGE=0.01
        - VALIDATOR_MIN_SELF_DELEGATION=1
+       - VALIDATOR_GAS=auto
+       - VALIDATOR_GAS_ADJUSTMENT=1.4
+       - VALIDATOR_FEES=120000uluna
        #Do not make 1 if you don’t know EXACTLY what you are doing 
        - VALIDATOR_AUTO_CONFIG=0
      restart: always

@@ -17,12 +17,14 @@
 
 5. Add your wallet
     ```bash
-	docker-compose exec keys-add.sh
+	docker-compose exec node sh /keys-add.sh
 	```
 
-6. Start the validator
+6. Copy your terra wallet address and go to the terra faucet here -> http://45.79.139.229:3000/ Put your address in and give yourself luna coins.
+
+7. Start the validator
 	```bash
-	docker-compose exec create-validator.sh
+	docker-compose exec node sh /create-validator.sh
 	```
 
 # Cheat Sheet:
@@ -43,6 +45,12 @@ docker-compose down
 
 ```bash
 docker-compose logs -f
+```
+
+# Run Terrad Commands Example
+
+```bash
+docker-compose exec node terrad status
 ```
 
 # Upgrade
