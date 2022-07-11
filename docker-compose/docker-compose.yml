@@ -16,6 +16,8 @@ services:
        - VALIDATOR_COMMISSION_RATE_MAX=0.2
        - VALIDATOR_COMMISSION_RATE_MAX_CHANGE=0.01
        - VALIDATOR_MIN_SELF_DELEGATION=1
+       #Do not make 1 if you don’t know EXACTLY what you are doing 
+       - VALIDATOR_AUTO_CONFIG=0
      restart: always
      volumes:
        - terra:/terra
@@ -26,4 +28,5 @@ services:
           hard: 65535
 volumes:
   terra:
+
 

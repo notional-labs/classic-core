@@ -40,5 +40,7 @@ RUN if [ "$chainid" = "columbus-5" ] ; then wget -O ~/.terra/config/genesis.json
     if [ "$chainid" = "rebel-1" ]    ; then wget -O ~/.terra/config/addrbook.json https://www.dropbox.com/s/xxy8p5u5gwqyl95/addrbook.json; fi;
     
 COPY ./entrypoint.sh /entrypoint.sh
+COPY ./keys-add.sh /keys-add.sh
+COPY ./create-validator.sh /create-validator.sh
 
 CMD ["/entrypoint.sh"]
