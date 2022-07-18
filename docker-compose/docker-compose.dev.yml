@@ -1,0 +1,9 @@
+version: '3.8'
+
+services:
+   core:
+     build: 
+      context: ../
+      dockerfile: Dockerfile.rebel-1
+   node:
+     build: .

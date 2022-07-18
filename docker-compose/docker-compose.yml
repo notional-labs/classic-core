@@ -1,4 +1,4 @@
-version: '3'
+version: '3.8'
 
 services:
    node:
@@ -23,8 +23,12 @@ services:
        #Do not make 1 if you don’t know EXACTLY what you are doing 
        - VALIDATOR_AUTO_CONFIG=0
      restart: always
+     ports:     
+       - "8000:1317"
      volumes:
-       - terra:/terra
+       - terra:/terra       
+     networks:
+       - terra-classic
      ulimits:
         nproc: 65535
         nofile:
@@ -33,4 +37,6 @@ services:
 volumes:
   terra:
 
-
+networks:
+  terra-classic:
+    driver: bridge

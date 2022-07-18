@@ -3,7 +3,7 @@ ARG version=latest
 
 FROM ${base_image}:${version}
 
-ARG chainid=columbus-5
+ARG chainid=rebel-1
 ARG validator_keyname=local
 ARG validator_passphrase=12345678
 ARG validator_mnenomic="torch swamp cancel lift never october child harsh rib aspect luxury word peanut length bamboo hawk material vehicle glue above west random sketch author"
