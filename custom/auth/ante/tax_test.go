@@ -116,7 +116,6 @@ func (suite *AnteTestSuite) TestEnsureMempoolFeesSend() {
 	suite.Require().NoError(err, "Decorator should not have errored on fee higher than local gasPrice")
 }
 
-
 func (suite *AnteTestSuite) TestEnsureMempoolFeesSwapSend() {
 	suite.SetupTest(true) // setup
 	suite.txBuilder = suite.clientCtx.TxConfig.NewTxBuilder()
@@ -443,7 +442,6 @@ func (suite *AnteTestSuite) TestEnsureMempoolFeesSendLunaTax() {
 	suite.Require().NoError(err, "Decorator should not have errored on fee higher than local gasPrice")
 }
 
-
 func (suite *AnteTestSuite) TestEnsureMempoolFeesSwapSendLunaTax() {
 	suite.SetupTest(true) // setup
 	suite.txBuilder = suite.clientCtx.TxConfig.NewTxBuilder()
@@ -500,7 +498,6 @@ func (suite *AnteTestSuite) TestEnsureMempoolFeesSwapSendLunaTax() {
 	_, err = antehandler(suite.ctx, tx, false)
 	suite.Require().NoError(err, "Decorator should not have errored on fee higher than local gasPrice")
 }
-
 
 func (suite *AnteTestSuite) TestEnsureMempoolFeesMultiSendLunaTax() {
 	suite.SetupTest(true) // setup
@@ -743,5 +740,3 @@ func (suite *AnteTestSuite) TestEnsureMempoolFeesExecLunaTax() {
 	_, err = antehandler(suite.ctx, tx, false)
 	suite.Require().NoError(err, "Decorator should not have errored on fee higher than local gasPrice")
 }
-
-

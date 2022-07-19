@@ -19,7 +19,6 @@ import (
 // anytime after this height
 const TaxPowerUpgradeHeight = 7684490
 
-
 // Keeper of the treasury store
 type Keeper struct {
 	storeKey   sdk.StoreKey
@@ -132,7 +131,7 @@ func (k Keeper) SetTaxCap(ctx sdk.Context, denom string, cap sdk.Int) {
 func (k Keeper) GetTaxCap(ctx sdk.Context, denom string) sdk.Int {
 	currHeight := ctx.BlockHeight()
 	// Allow tax cap for uluna
-	if denom == core.MicroLunaDenom && currHeight < TaxPowerUpgradeHeight{
+	if denom == core.MicroLunaDenom && currHeight < TaxPowerUpgradeHeight {
 		return sdk.ZeroInt()
 	}
 

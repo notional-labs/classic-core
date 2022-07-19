@@ -66,9 +66,9 @@ func (tfd TaxFeeDecorator) AnteHandle(ctx sdk.Context, tx sdk.Tx, simulate bool,
 
 		// Record tax proceeds
 		if !taxes.IsZero() {
-			// Taxes can be recorded but they are immediately burned after every block 
+			// Taxes can be recorded but they are immediately burned after every block
 			// Burn in new BurnTaxFeeDecorator AnteHandler
-			// TaxRate should be clamped by rate_min and rate_max to the same amount so stays constant 
+			// TaxRate should be clamped by rate_min and rate_max to the same amount so stays constant
 			tfd.treasuryKeeper.RecordEpochTaxProceeds(ctx, taxes)
 		}
 	}

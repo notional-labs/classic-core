@@ -5,8 +5,8 @@ import (
 
 	sdk "github.com/cosmos/cosmos-sdk/types"
 	sdkerrors "github.com/cosmos/cosmos-sdk/types/errors"
-	treasury "github.com/terra-money/core/x/treasury/types"
 	"github.com/cosmos/cosmos-sdk/x/auth/types"
+	treasury "github.com/terra-money/core/x/treasury/types"
 )
 
 // TaxPowerUpgradeHeight is when taxes are allowed to go into effect
@@ -17,14 +17,14 @@ const TaxPowerUpgradeHeight = 7684490
 // BurnTaxFeeDecorator will immediately burn the collected Tax
 type BurnTaxFeeDecorator struct {
 	treasuryKeeper TreasuryKeeper
-	bankKeeper BankKeeper
+	bankKeeper     BankKeeper
 }
 
 // NewBurnTaxFeeDecorator returns new tax fee decorator instance
 func NewBurnTaxFeeDecorator(treasuryKeeper TreasuryKeeper, bankKeeper BankKeeper) BurnTaxFeeDecorator {
 	return BurnTaxFeeDecorator{
 		treasuryKeeper: treasuryKeeper,
-		bankKeeper: bankKeeper,
+		bankKeeper:     bankKeeper,
 	}
 }
 
@@ -47,7 +47,7 @@ func (btfd BurnTaxFeeDecorator) AnteHandle(ctx sdk.Context, tx sdk.Tx, simulate 
 	// Now we remove the taxes from the gas reward and immediately burn it
 
 	if !simulate {
-		// Compute taxes again.  
+		// Compute taxes again.
 		taxes := FilterMsgAndComputeTax(ctx, btfd.treasuryKeeper, msgs...)
 
 		// Record tax proceeds
@@ -62,4 +62,3 @@ func (btfd BurnTaxFeeDecorator) AnteHandle(ctx sdk.Context, tx sdk.Tx, simulate 
 
 	return next(ctx, tx, simulate)
 }
-
