@@ -115,15 +115,15 @@ endif
 
 build-linux:
 	mkdir -p $(BUILDDIR)
-	docker build --no-cache --tag terrarebels/terraclassic.terrad-binary -f ./Dockerfile.rebel-1 .
-	docker create --name temp terrarebels/terraclassic.terrad-binary:latest
+	docker build --no-cache --tag terramoney/core ./
+	docker create --name temp terramoney/core:latest
 	docker cp temp:/usr/local/bin/terrad $(BUILDDIR)/
 	docker rm temp
 
 build-linux-with-shared-library:
 	mkdir -p $(BUILDDIR)
-	docker build --tag terrarebels/terraclassic.terrad-binary-shared ./ -f ./shared.Dockerfile
-	docker create --name temp terrarebels/terraclassic.terrad-binary-shared:latest
+	docker build --tag terramoney/core-shared ./ -f ./shared.Dockerfile
+	docker create --name temp terramoney/core-shared:latest
 	docker cp temp:/usr/local/bin/terrad $(BUILDDIR)/
 	docker cp temp:/lib/libwasmvm.so $(BUILDDIR)/
 	docker rm temp
@@ -243,14 +243,14 @@ proto-check-breaking:
 
 # Run a 4-node testnet locally
 localnet-start: build-linux localnet-stop
-	$(if $(shell $(DOCKER) inspect -f '{{ .Id }}' terrarebels/terrad-env 2>/dev/null),$(info found image terrarebels/terrad-env),$(MAKE) -C contrib/images terrad-env)
+	$(if $(shell $(DOCKER) inspect -f '{{ .Id }}' terramoney/terrad-env 2>/dev/null),$(info found image terramoney/terrad-env),$(MAKE) -C contrib/images terrad-env)
 	if ! [ -f build/node0/terrad/config/genesis.json ]; then $(DOCKER) run --rm \
 		--user $(shell id -u):$(shell id -g) \
 		-v $(BUILDDIR):/terrad:Z \
 		-v /etc/group:/etc/group:ro \
 		-v /etc/passwd:/etc/passwd:ro \
 		-v /etc/shadow:/etc/shadow:ro \
-		terrarebels/terrad-env testnet --v 4 -o . --starting-ip-address 192.168.10.2 --keyring-backend=test ; fi
+		terramoney/terrad-env testnet --v 4 -o . --starting-ip-address 192.168.10.2 --keyring-backend=test ; fi
 	docker-compose up -d
 
 localnet-stop:

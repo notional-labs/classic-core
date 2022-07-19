@@ -1,4 +1,4 @@
-ARG base_image=terrarebels/core
+ARG base_image=terraclassic.terrad-binary
 ARG version=latest
 
 FROM ${base_image}:${version}
