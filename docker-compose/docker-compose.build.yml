@@ -5,7 +5,7 @@ services:
      image: terraclassic.terrad-binary
      build: 
       context: ../
-      dockerfile: Dockerfile.rebel-1
+      dockerfile: Dockerfile.terraclassic.terrad-binary
       labels:
         - "terraclassic.terrad-binary.description=Contains the terrad binary"
    node:

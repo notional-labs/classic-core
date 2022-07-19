@@ -62,10 +62,7 @@ docker-compose up -d
 ```
 
 # Build from source
-Its possible to use docker-compose to build the images from the go source code.
+Its possible to use docker-compose to build the images from the go source code by running the following commands in sequence:
 
-## Build terrad-binary image
-docker-compose -f docker-compose.yml -f docker-compose.build.yml build core --no-cache
-
-## Build terrad-node image
-docker-compose -f docker-compose.yml -f docker-compose.build.yml build node --no-cache
+1) docker-compose -f docker-compose.yml -f docker-compose.build.yml build core --no-cache
+2) docker-compose -f docker-compose.yml -f docker-compose.build.yml build node --no-cache
