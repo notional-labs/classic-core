@@ -3,7 +3,7 @@ version: '3.8'
 services:
    node:
      container_name: node
-     image: terrarebels.terraclassic.terrad-node
+     image: terraclassic.terrad-node
      #image: terrarebels/core-node:docker_and_action_fixes_v2-rebel-1
      environment:
        - CHAINID=rebel-1

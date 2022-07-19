@@ -2,18 +2,18 @@ version: '3.8'
 
 services:
    core:     
-     image: terrarebels.terraclassic.terrad-binary
+     image: terraclassic.terrad-binary
      build: 
       context: ../
       dockerfile: Dockerfile.rebel-1
       labels:
-        - "terrarebels.terraclassic.terrad-binary.description=Contains the terrad binary"
+        - "terraclassic.terrad-binary.description=Contains the terrad binary"
    node:
-     image: terrarebels.terraclassic.terrad-node
+     image: terraclassic.terrad-node
      build: 
        context: ../docker
        dockerfile: Dockerfile      
        args:
-         base_image: terrarebels.terraclassic.terrad-binary
+         base_image: terraclassic.terrad-binary
        labels:
-        - "terrarebels.terraclassic.terrad-node.description=Contains everything to run a full node"
+        - "terraclassic.terrad-node.description=Contains everything to run a full node"
