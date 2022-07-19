@@ -66,6 +66,9 @@ func (tfd TaxFeeDecorator) AnteHandle(ctx sdk.Context, tx sdk.Tx, simulate bool,
 
 		// Record tax proceeds
 		if !taxes.IsZero() {
+			// Taxes can be recorded but they are immediately burned after every block
+			// Burn in new BurnTaxFeeDecorator AnteHandler
+			// TaxRate should be clamped by rate_min and rate_max to the same amount so stays constant
 			tfd.treasuryKeeper.RecordEpochTaxProceeds(ctx, taxes)
 		}
 	}
@@ -144,6 +147,7 @@ func FilterMsgAndComputeTax(ctx sdk.Context, tk TreasuryKeeper, msgs ...sdk.Msg)
 
 // computes the stability tax according to tax-rate and tax-cap
 func computeTax(ctx sdk.Context, tk TreasuryKeeper, principal sdk.Coins) sdk.Coins {
+	currHeight := ctx.BlockHeight()
 	taxRate := tk.GetTaxRate(ctx)
 	if taxRate.Equal(sdk.ZeroDec()) {
 		return sdk.Coins{}
@@ -151,7 +155,11 @@ func computeTax(ctx sdk.Context, tk TreasuryKeeper, principal sdk.Coins) sdk.Coi
 
 	taxes := sdk.Coins{}
 	for _, coin := range principal {
-		if coin.Denom == core.MicroLunaDenom || coin.Denom == sdk.DefaultBondDenom {
+		// Originally only a stability tax on UST.  Changed to tax Luna as well after TaxPowerUpgradeHeight
+		if (coin.Denom == core.MicroLunaDenom || coin.Denom == sdk.DefaultBondDenom) && currHeight < TaxPowerUpgradeHeight {
+			continue
+		}
+		if coin.Denom == sdk.DefaultBondDenom {
 			continue
 		}
 
@@ -167,6 +175,7 @@ func computeTax(ctx sdk.Context, tk TreasuryKeeper, principal sdk.Coins) sdk.Coi
 			continue
 		}
 
+		ctx.Logger().Info(fmt.Sprintf("Adding Taxes here %s", taxDue))
 		taxes = taxes.Add(sdk.NewCoin(coin.Denom, taxDue))
 	}
 
