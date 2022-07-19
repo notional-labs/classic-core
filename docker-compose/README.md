@@ -60,3 +60,12 @@ docker-compose down
 docker-compose pull
 docker-compose up -d
 ```
+
+# Build from source
+Its possible to use docker-compose to build the images from the go source code.
+
+## Build terrad-binary image
+docker-compose -f docker-compose.yml -f docker-compose.build.yml build core --no-cache
+
+## Build terrad-node image
+docker-compose -f docker-compose.yml -f docker-compose.build.yml build node --no-cache

@@ -3,7 +3,8 @@ version: '3.8'
 services:
    node:
      container_name: node
-     image: terrarebels/core-node:docker_and_action_fixes_v2-rebel-1
+     image: terrarebels.terraclassic.terrad-node
+     #image: terrarebels/core-node:docker_and_action_fixes_v2-rebel-1
      environment:
        - CHAINID=rebel-1
        - TERRAD_STARTUP_PARAMETERS=--x-crisis-skip-assert-invariants
@@ -24,7 +25,10 @@ services:
        - VALIDATOR_AUTO_CONFIG=0
      restart: always
      ports:     
-       - "8000:1317"
+       - "1317:1317"
+       - "9090:9090"
+       - "26656:26656"
+       - "26657:26657"
      volumes:
        - terra:/terra       
      networks:

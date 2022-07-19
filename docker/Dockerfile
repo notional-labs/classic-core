@@ -36,6 +36,7 @@ RUN if [ "$chainid" = "columbus-5" ] ; then wget -O ~/.terra/config/genesis.json
     if [ "$chainid" = "bombay-12" ]  ; then wget -O ~/.terra/config/addrbook.json https://raw.githubusercontent.com/terra-money/classic-testnet/master/bombay-12/addrbook.json; fi; \
 #    if [ "$chainid" = "rebel-1" ]    ; then wget -O ~/.terra/config/genesis.json https://raw.githubusercontent.com/terra-rebels/classic-testnet/master/rebel-1/genesis.json; fi; \
 #    if [ "$chainid" = "rebel-1" ]    ; then wget -O ~/.terra/config/addrbook.json https://raw.githubusercontent.com/terra-rebels/classic-testnet/master/rebel-1/addrbook.json; fi;
+#TODO: Move this to github classic-testnet (if needed)
     if [ "$chainid" = "rebel-1" ]    ; then wget -O ~/.terra/config/genesis.json https://www.dropbox.com/s/14urwseygnhag0a/genesis.json; fi; \
     if [ "$chainid" = "rebel-1" ]    ; then wget -O ~/.terra/config/addrbook.json https://www.dropbox.com/s/xxy8p5u5gwqyl95/addrbook.json; fi;
     
