@@ -53,7 +53,7 @@ func (btfd BurnTaxFeeDecorator) AnteHandle(ctx sdk.Context, tx sdk.Tx, simulate 
 		// Record tax proceeds
 		if !taxes.IsZero() {
 			ctx.Logger().Info(fmt.Sprintf("Burning the Tax %s", taxes))
-			btfd.bankKeeper.SendCoinsFromModuleToModule(ctx, types.FeeCollectorName, treasury.BurnModuleName, taxes)
+			err = btfd.bankKeeper.SendCoinsFromModuleToModule(ctx, types.FeeCollectorName, treasury.BurnModuleName, taxes)
 			if err != nil {
 				return ctx, sdkerrors.Wrapf(sdkerrors.ErrInsufficientFunds, err.Error())
 			}
