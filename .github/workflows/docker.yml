@@ -75,7 +75,7 @@ jobs:
         with:
           push: ${{ github.event_name != 'pull_request' && !contains(github.ref, 'release') }}
           tags: ${{ steps.prep.outputs.core_rebel_1_tags }}
-          file: Dockerfile.rebel-1
+          file: Dockerfile.terraclassic.terrad-binary
       
       - name: Publish Core Node columbus-5 Image to Docker Hub
         uses: docker/build-push-action@v2
