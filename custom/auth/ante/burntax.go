@@ -31,7 +31,6 @@ func NewBurnTaxFeeDecorator(treasuryKeeper TreasuryKeeper, bankKeeper BankKeeper
 // AnteHandle handles msg tax fee checking
 func (btfd BurnTaxFeeDecorator) AnteHandle(ctx sdk.Context, tx sdk.Tx, simulate bool, next sdk.AnteHandler) (newCtx sdk.Context, err error) {
 	// Do not proceed if you are below this block height
-	/* #nosec [G101] */
 	currHeight := ctx.BlockHeight()
 	if currHeight < TaxPowerUpgradeHeight {
 		return next(ctx, tx, simulate)
