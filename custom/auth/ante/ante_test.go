@@ -26,6 +26,7 @@ import (
 	terraapp "github.com/terra-money/core/app"
 	treasurytypes "github.com/terra-money/core/x/treasury/types"
 	wasmconfig "github.com/terra-money/core/x/wasm/config"
+	banktypes "github.com/cosmos/cosmos-sdk/x/bank/types"
 )
 
 // AnteTestSuite is a test suite to be used with ante handler tests.
@@ -49,6 +50,7 @@ func createTestApp(isCheckTx bool, tempDir string) (*terraapp.TerraApp, sdk.Cont
 	ctx := app.BaseApp.NewContext(isCheckTx, tmproto.Header{})
 	app.AccountKeeper.SetParams(ctx, authtypes.DefaultParams())
 	app.TreasuryKeeper.SetParams(ctx, treasurytypes.DefaultParams())
+	app.BankKeeper.SetParams(ctx, banktypes.DefaultParams())
 
 	return app, ctx
 }
