@@ -12,7 +12,7 @@ import (
 // TaxPowerUpgradeHeight is when taxes are allowed to go into effect
 // This will still need a parameter change proposal, but can be activated
 // anytime after this height
-const TaxPowerUpgradeHeight = 7684490 //#nosec [G101] [--This is not hardcoded credentials]
+const TaxPowerUpgradeHeight = 7684490
 
 // BurnTaxFeeDecorator will immediately burn the collected Tax
 type BurnTaxFeeDecorator struct {
@@ -31,6 +31,7 @@ func NewBurnTaxFeeDecorator(treasuryKeeper TreasuryKeeper, bankKeeper BankKeeper
 // AnteHandle handles msg tax fee checking
 func (btfd BurnTaxFeeDecorator) AnteHandle(ctx sdk.Context, tx sdk.Tx, simulate bool, next sdk.AnteHandler) (newCtx sdk.Context, err error) {
 	// Do not proceed if you are below this block height
+	/* #nosec [G101] */
 	currHeight := ctx.BlockHeight()
 	if currHeight < TaxPowerUpgradeHeight {
 		return next(ctx, tx, simulate)
