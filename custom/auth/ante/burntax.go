@@ -12,7 +12,7 @@ import (
 // TaxPowerUpgradeHeight is when taxes are allowed to go into effect
 // This will still need a parameter change proposal, but can be activated
 // anytime after this height
-const TaxPowerUpgradeHeight = 7684490
+const TaxPowerUpgradeHeight = 7684490 //#nosec [G101] [--This is not hardcoded credentials]
 
 // BurnTaxFeeDecorator will immediately burn the collected Tax
 type BurnTaxFeeDecorator struct {
