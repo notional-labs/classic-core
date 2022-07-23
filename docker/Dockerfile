@@ -4,6 +4,11 @@ ARG version=latest
 FROM ${base_image}:${version}
 
 ARG chainid=rebel-1
+ARG enable_lcd=true
+ARG enable_unsafe_cors=false
+ARG cors_allowed_origins=[]
+ARG cors_allowed_methods=["HEAD", "GET", "POST"]
+ARG cors_allowed_headers=["Origin", "Accept", "Content-Type", "X-Requested-With", "X-Server-Time"]
 ARG validator_keyname=local
 ARG validator_passphrase=12345678
 ARG validator_mnenomic="torch swamp cancel lift never october child harsh rib aspect luxury word peanut length bamboo hawk material vehicle glue above west random sketch author"
@@ -14,6 +19,11 @@ ARG validator_commission_rate_max_change=0.01
 ARG validator_min_self_delegation=1
 
 ENV CHAINID ${chainid}
+ENV ENABLE_LCD ${enable_lcd}
+ENV ENABLE_UNSAFE_CORS ${enable_unsafe_cors}
+ENV CORS_ALLOWED_ORIGINS ${cors_allowed_origins}
+ENV CORS_ALLOWED_METHODS ${cors_allowed_methods}
+ENV CORS_ALLOWED_HEADERS ${cors_allowed_headers}
 ENV VALIDATOR_KEYNAME ${validator_keyname}
 ENV VALIDATOR_PASSPHRASE ${validator_passphrase}
 ENV VALIDATOR_MNENOMIC ${validator_mnenomic}
@@ -34,11 +44,9 @@ RUN if [ "$chainid" = "columbus-5" ] ; then wget -O ~/.terra/config/genesis.json
     if [ "$chainid" = "columbus-5" ] ; then wget -O ~/.terra/config/addrbook.json https://networks.mcontrol.ml/columbus/addrbook.json; fi; \
     if [ "$chainid" = "bombay-12" ]  ; then wget -O ~/.terra/config/genesis.json https://raw.githubusercontent.com/terra-money/classic-testnet/master/bombay-12/genesis.json; fi; \
     if [ "$chainid" = "bombay-12" ]  ; then wget -O ~/.terra/config/addrbook.json https://raw.githubusercontent.com/terra-money/classic-testnet/master/bombay-12/addrbook.json; fi; \
-#    if [ "$chainid" = "rebel-1" ]    ; then wget -O ~/.terra/config/genesis.json https://raw.githubusercontent.com/terra-rebels/classic-testnet/master/rebel-1/genesis.json; fi; \
-#    if [ "$chainid" = "rebel-1" ]    ; then wget -O ~/.terra/config/addrbook.json https://raw.githubusercontent.com/terra-rebels/classic-testnet/master/rebel-1/addrbook.json; fi;
-#TODO: Move this to github classic-testnet (if needed)
-    if [ "$chainid" = "rebel-1" ]    ; then wget -O ~/.terra/config/genesis.json https://www.dropbox.com/s/14urwseygnhag0a/genesis.json; fi; \
-    if [ "$chainid" = "rebel-1" ]    ; then wget -O ~/.terra/config/addrbook.json https://www.dropbox.com/s/xxy8p5u5gwqyl95/addrbook.json; fi;
+#(TODO: update genesis file if we dont want to start from block #1.) if [ "$chainid" = "rebel-1" ]    ; then wget -O ~/.terra/config/genesis.json https://raw.githubusercontent.com/terra-rebels/classic-testnet/master/rebel-1/genesis.json; fi; \
+    if [ "$chainid" = "rebel-1" ]    ; then wget -O ~/.terra/config/addrbook.json https://raw.githubusercontent.com/terra-rebels/classic-testnet/master/rebel-1/addrbook.json; fi; \
+    if [ "$chainid" = "rebel-1" ]    ; then wget -O ~/.terra/config/genesis.json https://www.dropbox.com/s/14urwseygnhag0a/genesis.json; fi;
     
 COPY ./entrypoint.sh /entrypoint.sh
 COPY ./keys-add.sh /keys-add.sh
