@@ -81,7 +81,7 @@ jobs:
           context: docker
           file: docker/Dockerfile
           build-args: |
-            base_image=${{ env.docker_core_image }}
+            base_image=${{ env.terraclassic_terrad_binary }}
             version=${{ steps.prep.outputs.version }}
             chainid=columbus-5
 
@@ -93,6 +93,6 @@ jobs:
           context: docker
           file: docker/Dockerfile
           build-args: |
-            base_image=${{ env.docker_core_image }}
+            base_image=${{ env.terraclassic_terrad_binary }}
             version=${{ steps.prep.outputs.version }}-rebel-1
             chainid=rebel-1
