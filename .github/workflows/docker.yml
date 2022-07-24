@@ -65,6 +65,7 @@ jobs:
         with:
           push: ${{ github.event_name != 'pull_request' && !contains(github.ref, 'release') }}
           tags: ${{ steps.prep.outputs.core_tags }}
+          file: Dockerfile.terraclassic.terrad-binary
       
       - name: Publish terraclassic.terrad-binary (rebel-1) Image to Docker Hub
         uses: docker/build-push-action@v2
