@@ -4,11 +4,11 @@ services:
    node:
      container_name: node
      #Enable this image if you want to use the docker-compose CLI to build from the local go source
-     image: terraclassic.terrad-node
+     #image: terraclassic.terrad-node
      #Enable this image if you want to target columbus-5
      #image: terrarebels/terraclassic.terrad-node:latest-columbus-5
      #Enable this image if you want to target rebel-1
-     #image: terrarebels/terraclassic.terrad-node:latest-rebel-1
+     image: terrarebels/terraclassic.terrad-node:latest-rebel-1
      environment:
        - CHAINID=rebel-1
        - ENABLE_LCD=true       
