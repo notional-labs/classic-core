@@ -256,4 +256,12 @@ localnet-start: build-linux localnet-stop
 localnet-stop:
 	docker-compose down
 
+localnet-rebel1-start:
+    docker-compose -f ./docker-compose/docker-compose.yml -f ./docker-compose/docker-compose.build.yml build core
+	docker-compose -f ./docker-compose/docker-compose.yml -f ./docker-compose/docker-compose.build.yml build node
+	docker-compose -f ./docker-compose/docker-compose.yml up
+	
+localnet-rebel1-stop:
+	docker-compose -f ./docker-compose/docker-compose.yml down
+
 .PHONY: localnet-start localnet-stop
