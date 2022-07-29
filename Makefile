@@ -264,6 +264,9 @@ localnet-rebel1-start:
 	docker-compose -f ./docker-compose/docker-compose.yml up
 	
 localnet-rebel1-stop:
+	docker-compose -f ./docker-compose/docker-compose.yml stop
+
+localnet-rebel1-clean:
 	docker-compose -f ./docker-compose/docker-compose.yml down
 
-.PHONY: localnet-start localnet-stop localnet-rebel1-start localnet-rebel1-stop localnet-rebel1-build
+.PHONY: localnet-start localnet-stop localnet-rebel1-start localnet-rebel1-stop localnet-rebel1-build localnet-rebel1-clean
