@@ -128,7 +128,7 @@ build-linux-with-shared-library:
 	docker cp temp:/lib/libwasmvm.so $(BUILDDIR)/
 	docker rm temp
 
-install: go.sum 
+install: go.sum
 	go install -mod=readonly $(BUILD_FLAGS) ./cmd/terrad
 
 #TODO: Fix broken statik tooling
@@ -235,7 +235,7 @@ proto-lint:
 proto-check-breaking:
 	@$(DOCKER_BUF) breaking --against $(HTTPS_GIT)#branch=master
 
-.PHONY: proto-all proto-gen proto-swagger-gen proto-format proto-lint proto-check-breaking 
+.PHONY: proto-all proto-gen proto-swagger-gen proto-format proto-lint proto-check-breaking
 
 ###############################################################################
 ###                                Localnet                                 ###
@@ -262,7 +262,7 @@ localnet-rebel1-build:
 
 localnet-rebel1-start:
 	docker-compose -f ./docker-compose/docker-compose.yml up
-	
+
 localnet-rebel1-stop:
 	docker-compose -f ./docker-compose/docker-compose.yml stop
 
