@@ -3,7 +3,7 @@ What changed:
 
 How was it changed:
 
-Link to GHE issue tracker: 
+Link to GitHub issue tracker: 
 
 ---
 
