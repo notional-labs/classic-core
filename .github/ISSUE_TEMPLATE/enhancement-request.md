@@ -1,8 +1,8 @@
 ---
 name: Enhancement request
 about: Suggest an idea for this project
-title: 'Enhancement: '
-labels: enhancement
+title: '[Enhancement] title-of-feature '
+labels: 'Squad: Classic Core', 'enhancement'
 assignees: ''
 
 ---

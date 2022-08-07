@@ -1,8 +1,8 @@
 ---
-name: Feature request
+name: New Feature request
 about: New Issue / Story
-title: ''
-labels: ''
+title: "[FEATURE] title-of-feature  "
+labels: 'Squad: Classic Core'
 assignees: ''
 
 ---

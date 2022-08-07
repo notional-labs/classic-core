@@ -33,8 +33,6 @@ jobs:
               VERSION=latest
             fi
           fi
-          echo "version: $VERSION"
-          echo "binary: ${terraclassic_terrad_binary}"
           CORE_TAGS="${terraclassic_terrad_binary}:${VERSION}"
           CORE_NODE_COLUMBUS_5_TAGS="${terraclassic_terrad_node}:${VERSION}-columbus-5"
           CORE_REBEL_1_TAGS="${terraclassic_terrad_binary}:${VERSION}-rebel-1"
