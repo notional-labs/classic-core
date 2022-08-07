@@ -1,11 +1,21 @@
 ## Summary of changes
 
-<Describe summary of major changes here>
+What changed:
+
+How was it changed:
+
+Link to GitHub issue tracker: 
+
+----
+
+### Code Checklist
+- [ ] tested
+- [ ] documented
 
 ## Report of required housekeeping
 
-- [ ] Github issue OR spec proposal link
-- [ ] Wrote tests
+- [ ] Github issue link added
+- [ ] Wrote Unit tests
 - [ ] Updated API documentation (client/lcd/swagger-ui/swagger.yaml)
 - [ ] Added a relevant changelog entry: clog add [section] [stanza] [message]
 
