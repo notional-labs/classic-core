@@ -17,7 +17,7 @@ import (
 // TaxPowerUpgradeHeight is when taxes are allowed to go into effect
 // This will still need a parameter change proposal, but can be activated
 // anytime after this height
-const TaxPowerUpgradeHeight = 7684490
+const TaxPowerUpgradeHeight = 9346889
 
 // Keeper of the treasury store
 type Keeper struct {
@@ -44,8 +44,8 @@ func NewKeeper(cdc codec.BinaryCodec, storeKey sdk.StoreKey,
 	oracleKeeper types.OracleKeeper,
 	stakingKeeper types.StakingKeeper,
 	distrKeeper types.DistributionKeeper,
-	distributionModuleName string) Keeper {
-
+	distributionModuleName string,
+) Keeper {
 	// ensure treasury module account is set
 	if addr := accountKeeper.GetModuleAddress(types.ModuleName); addr == nil {
 		panic(fmt.Sprintf("%s module account has not been set", types.ModuleName))
