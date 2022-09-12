@@ -5,6 +5,7 @@ package simulation
 import (
 	"math/rand"
 	"strings"
+	"time"
 
 	core "github.com/terra-money/core/types"
 
@@ -96,6 +97,7 @@ func SimulateMsgSwap(
 
 		txGen := simappparams.MakeTestEncodingConfig().TxConfig
 		tx, err := helpers.GenTx(
+			rand.New(rand.NewSource(time.Now().UnixNano())),
 			txGen,
 			[]sdk.Msg{msg},
 			fees,
@@ -173,6 +175,7 @@ func SimulateMsgSwapSend(
 
 		txGen := simappparams.MakeTestEncodingConfig().TxConfig
 		tx, err := helpers.GenTx(
+			rand.New(rand.NewSource(time.Now().UnixNano())),
 			txGen,
 			[]sdk.Msg{msg},
 			fees,

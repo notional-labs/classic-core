@@ -16,8 +16,8 @@ import (
 
 	tmproto "github.com/tendermint/tendermint/proto/tendermint/types"
 
-	"github.com/cosmos/ibc-go/modules/apps/transfer"
-	ibc "github.com/cosmos/ibc-go/modules/core"
+	"github.com/cosmos/ibc-go/v3/modules/apps/transfer"
+	ibc "github.com/cosmos/ibc-go/v3/modules/core"
 
 	"github.com/cosmos/cosmos-sdk/baseapp"
 	"github.com/cosmos/cosmos-sdk/codec"
@@ -364,7 +364,8 @@ func CreateTestInput(t *testing.T) TestInput {
 		oracleKeeper,
 		marketKeeper,
 		treasuryKeeper,
-		keeper}
+		keeper,
+	}
 }
 
 // FundAccount is a utility function that funds an account by minting and
