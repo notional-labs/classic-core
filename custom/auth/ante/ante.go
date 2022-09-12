@@ -1,8 +1,8 @@
 package ante
 
 import (
-	channelkeeper "github.com/cosmos/ibc-go/v3/modules/core/04-channel/keeper"
 	ibcante "github.com/cosmos/ibc-go/v3/modules/core/ante"
+	"github.com/terra-money/core/x/wasm/keeper"
 
 	sdk "github.com/cosmos/cosmos-sdk/types"
 	sdkerrors "github.com/cosmos/cosmos-sdk/types/errors"
@@ -12,14 +12,14 @@ import (
 
 // HandlerOptions are the options required for constructing a default SDK AnteHandler.
 type HandlerOptions struct {
-	AccountKeeper    cosmosante.AccountKeeper
-	BankKeeper       BankKeeper
-	FeegrantKeeper   cosmosante.FeegrantKeeper
-	OracleKeeper     OracleKeeper
-	TreasuryKeeper   TreasuryKeeper
-	SignModeHandler  signing.SignModeHandler
-	SigGasConsumer   cosmosante.SignatureVerificationGasConsumer
-	IBCChannelKeeper channelkeeper.Keeper
+	AccountKeeper   cosmosante.AccountKeeper
+	BankKeeper      BankKeeper
+	FeegrantKeeper  cosmosante.FeegrantKeeper
+	OracleKeeper    OracleKeeper
+	TreasuryKeeper  TreasuryKeeper
+	SignModeHandler signing.SignModeHandler
+	SigGasConsumer  cosmosante.SignatureVerificationGasConsumer
+	IBCKeeper       *keeper.Keeper
 }
 
 // NewAnteHandler returns an AnteHandler that checks and increments sequence
