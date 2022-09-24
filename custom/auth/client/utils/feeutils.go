@@ -15,6 +15,7 @@ import (
 	"github.com/cosmos/cosmos-sdk/x/auth/legacy/legacytx"
 	"github.com/cosmos/cosmos-sdk/x/authz"
 
+	"github.com/terra-money/core/custom/auth/ante/"
 	core "github.com/terra-money/core/types"
 
 	banktypes "github.com/cosmos/cosmos-sdk/x/bank/types"
