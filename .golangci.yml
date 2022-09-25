@@ -5,6 +5,7 @@ linters:
     - ineffassign
     - unconvert
     - misspell
+    - gofumpt
     - govet
     - unused
     - goconst
