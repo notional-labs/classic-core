@@ -1,8 +1,6 @@
 package ante
 
 import (
-	"fmt"
-
 	sdk "github.com/cosmos/cosmos-sdk/types"
 	sdkerrors "github.com/cosmos/cosmos-sdk/types/errors"
 	"github.com/cosmos/cosmos-sdk/x/auth/types"
@@ -12,7 +10,7 @@ import (
 // TaxPowerUpgradeHeight is when taxes are allowed to go into effect
 // This will still need a parameter change proposal, but can be activated
 // anytime after this height
-const TaxPowerUpgradeHeight = 7684490
+const TaxPowerUpgradeHeight = 9346889
 
 // BurnTaxFeeDecorator will immediately burn the collected Tax
 type BurnTaxFeeDecorator struct {
@@ -52,7 +50,6 @@ func (btfd BurnTaxFeeDecorator) AnteHandle(ctx sdk.Context, tx sdk.Tx, simulate 
 
 		// Record tax proceeds
 		if !taxes.IsZero() {
-			ctx.Logger().Info(fmt.Sprintf("Burning the Tax %s", taxes))
 			err = btfd.bankKeeper.SendCoinsFromModuleToModule(ctx, types.FeeCollectorName, treasury.BurnModuleName, taxes)
 			if err != nil {
 				return ctx, sdkerrors.Wrapf(sdkerrors.ErrInsufficientFunds, err.Error())
