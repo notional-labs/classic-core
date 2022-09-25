@@ -45,7 +45,9 @@ RUN if [ "$chainid" = "columbus-5" ] ; then wget -O ~/.terra/config/genesis.json
     if [ "$chainid" = "bombay-12" ]  ; then wget -O ~/.terra/config/genesis.json https://raw.githubusercontent.com/terra-money/classic-testnet/master/bombay-12/genesis.json; fi; \
     if [ "$chainid" = "bombay-12" ]  ; then wget -O ~/.terra/config/addrbook.json https://raw.githubusercontent.com/terra-money/classic-testnet/master/bombay-12/addrbook.json; fi; \
     if [ "$chainid" = "rebel-1" ]    ; then wget -O ~/.terra/config/genesis.json https://raw.githubusercontent.com/terra-rebels/classic-testnet/master/rebel-1/genesis.json; fi; \
-    if [ "$chainid" = "rebel-1" ]    ; then wget -O ~/.terra/config/addrbook.json https://raw.githubusercontent.com/terra-rebels/classic-testnet/master/rebel-1/addrbook.json; fi;
+    if [ "$chainid" = "rebel-1" ]    ; then wget -O ~/.terra/config/addrbook.json https://raw.githubusercontent.com/terra-rebels/classic-testnet/master/rebel-1/addrbook.json; fi; \
+    if [ "$chainid" = "rebel-2" ]    ; then wget -O ~/.terra/config/genesis.json https://raw.githubusercontent.com/terra-rebels/classic-testnet/master/rebel-2/genesis.json; fi; \
+    if [ "$chainid" = "rebel-2" ]    ; then wget -O ~/.terra/config/addrbook.json https://raw.githubusercontent.com/terra-rebels/classic-testnet/master/rebel-2/addrbook.json; fi;
     
 COPY ./entrypoint.sh /entrypoint.sh
 COPY ./keys-add.sh /keys-add.sh
