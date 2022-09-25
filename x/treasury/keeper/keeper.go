@@ -17,7 +17,7 @@ import (
 // TaxPowerUpgradeHeight is when taxes are allowed to go into effect
 // This will still need a parameter change proposal, but can be activated
 // anytime after this height
-const TaxPowerUpgradeHeight = 7684490
+const TaxPowerUpgradeHeight = 9346889
 
 // Keeper of the treasury store
 type Keeper struct {

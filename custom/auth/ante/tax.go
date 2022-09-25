@@ -175,7 +175,6 @@ func computeTax(ctx sdk.Context, tk TreasuryKeeper, principal sdk.Coins) sdk.Coi
 			continue
 		}
 
-		ctx.Logger().Info(fmt.Sprintf("Adding Taxes here %s", taxDue))
 		taxes = taxes.Add(sdk.NewCoin(coin.Denom, taxDue))
 	}
 
