@@ -12,6 +12,7 @@ import (
 	"github.com/cosmos/cosmos-sdk/client/flags"
 )
 
+//nolint:unused
 const (
 	flagDenom = "denom"
 	flagEpoch = "epoch"

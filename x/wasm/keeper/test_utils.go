@@ -112,7 +112,7 @@ func MakeEncodingConfig(_ *testing.T) simparams.EncodingConfig {
 
 // Test Account
 var (
-	valPubKeys = simapp.CreateTestPubKeys(5)
+	valPubKeys = simapp.CreateTestPubKeys(5) //nolint:unused // this is a test
 
 	PubKeys = []crypto.PubKey{
 		secp256k1.GenPrivKey().PubKey(),
@@ -379,6 +379,7 @@ func FundAccount(input TestInput, addr sdk.AccAddress, amounts sdk.Coins) error 
 	return input.BankKeeper.SendCoinsFromModuleToAccount(input.Ctx, faucetAccountName, addr, amounts)
 }
 
+//nolint:unused
 func createFakeFundedAccount(ctx sdk.Context, ak authkeeper.AccountKeeper, bk bankkeeper.Keeper, coins sdk.Coins) sdk.AccAddress {
 	_, _, addr := keyPubAddr()
 	ak.SetAccount(ctx, authtypes.NewBaseAccountWithAddress(addr))
@@ -393,6 +394,7 @@ func createFakeFundedAccount(ctx sdk.Context, ak authkeeper.AccountKeeper, bk ba
 	return addr
 }
 
+//nolint:unused
 func keyPubAddr() (crypto.PrivKey, crypto.PubKey, sdk.AccAddress) {
 	key := ed25519.GenPrivKey()
 	pub := key.PubKey()

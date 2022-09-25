@@ -6,7 +6,7 @@ import (
 	"encoding/json"
 	"errors"
 	"fmt"
-	"io/ioutil"
+	"os"
 	"strconv"
 
 	"github.com/spf13/cobra"
@@ -18,7 +18,7 @@ import (
 	"github.com/terra-money/core/x/wasm/types"
 )
 
-const flagRaw = "raw"
+const flagRaw = "raw" //nolint:unused
 
 // GetQueryCmd returns the cli query commands for wasm   module
 func GetQueryCmd() *cobra.Command {
@@ -97,7 +97,7 @@ func GetCmdQueryByteCode() *cobra.Command {
 			}
 
 			fmt.Printf("Downloading wasm code to %s\n", args[1])
-			return ioutil.WriteFile(args[1], res.ByteCode, 0o600)
+			return os.WriteFile(args[1], res.ByteCode, 0o600)
 		},
 	}
 

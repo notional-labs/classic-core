@@ -4,8 +4,8 @@ package simulation
 
 import (
 	"encoding/json"
-	"io/ioutil"
 	"math/rand"
+	"os"
 	"strings"
 
 	"github.com/tendermint/tendermint/crypto"
@@ -24,6 +24,7 @@ import (
 	"github.com/terra-money/core/x/wasm/types"
 )
 
+//nolint:gosec // these are not hard coded credentials
 const (
 	OpWeightMsgStoreCode           = "op_weight_msg_store_code"
 	OpWeightMsgInstantiateContract = "op_weight_msg_instantiate_contract"
@@ -112,8 +113,9 @@ func WeightedOperations(
 	}
 }
 
+//nolint:unused
 func mustLoad(path string) []byte {
-	bz, err := ioutil.ReadFile(path)
+	bz, err := os.ReadFile(path)
 	if err != nil {
 		panic(err)
 	}
@@ -179,6 +181,7 @@ type initMsg struct {
 	Beneficiary string `json:"beneficiary"`
 }
 
+//nolint:unused
 func keyPubAddr() (crypto.PrivKey, crypto.PubKey, sdk.AccAddress) {
 	key := ed25519.GenPrivKey()
 	pub := key.PubKey()
@@ -348,7 +351,7 @@ func SimulateMsgMigrateContract(
 			return simtypes.NoOpMsg(types.ModuleName, types.TypeMsgMigrateContract, "unable to generate fee"), nil, err
 		}
 
-		spendableCoins = spendableCoins.Sub(fees)
+		spendableCoins = spendableCoins.Sub(fees) //nolint:staticcheck // TODO: determine if we can remove this reassignment.
 
 		migData := map[string]interface{}{
 			"verifier": info.Creator,

@@ -20,6 +20,8 @@ import (
 )
 
 // Simulation operation weights constants
+//
+//nolint:gosec
 const (
 	OpWeightMsgAggregateExchangeRatePrevote = "op_weight_msg_exchange_rate_aggregate_prevote"
 	OpWeightMsgAggregateExchangeRateVote    = "op_weight_msg_exchange_rate_aggregate_vote"

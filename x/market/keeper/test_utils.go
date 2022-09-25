@@ -89,7 +89,7 @@ func MakeEncodingConfig(_ *testing.T) simparams.EncodingConfig {
 
 // Test Account
 var (
-	valPubKeys = simapp.CreateTestPubKeys(5)
+	valPubKeys = simapp.CreateTestPubKeys(5) //nolint:unused
 
 	PubKeys = []crypto.PubKey{
 		secp256k1.GenPrivKey().PubKey(),
